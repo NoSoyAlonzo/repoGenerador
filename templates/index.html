@@ -1,0 +1,85 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Nombres para Empresas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+    <!-- Menú de navegación -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <h1>NombreGen</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Cómo Funciona</a></li>
+                <li><a href="#">Ventajas</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <!-- Sección del formulario para generar nombres -->
+        <section class="form-section">
+            <h2>Generador de Nombres de Empresas</h2>
+            <form action="/" method="POST">
+                <label for="brand_name">Introduce el nombre de tu marca o palabra favorita:</label>
+                <input type="text" id="brand_name" name="brand_name" required placeholder="Ej: Smart, Chic, etc.">
+                
+                <label for="category">Selecciona una categoría:</label>
+                <select id="category" name="category_id" required>
+                    {% for category_id, category_name in categories %}
+                        <option value="{{ category_id }}">{{ category_name }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Generar Nombres</button>
+            </form>
+
+            <!-- Mostrar los nombres generados si existen -->
+            {% if names %}
+            <h3>Nombres Generados</h3>
+            <ul class="name-list">
+                {% for name in names %}
+                    <li>{{ name }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </section>
+
+        <!-- Sección de información y paneles -->
+        <section class="info-section">
+            <h2>Ventajas de Generar Nombres con Nosotros</h2>
+            <div class="info-panels">
+                <div class="info-panel">
+                    <h3>Creatividad Ilimitada</h3>
+                    <p>Genera nombres únicos y originales para tu empresa en cuestión de segundos.</p>
+                </div>
+                <div class="info-panel">
+                    <h3>Categorías Personalizadas</h3>
+                    <p>Elige entre diversas categorías para que el nombre de tu empresa se ajuste a tu industria.</p>
+                </div>
+                <div class="info-panel">
+                    <h3>Fácil de Usar</h3>
+                    <p>Con una interfaz intuitiva, puedes generar nombres sin complicaciones.</p>
+                </div>
+                <div class="info-panel">
+                    <h3>Resultados al Instante</h3>
+                    <p>Obtén una lista completa de nombres en menos de un segundo, sin largas esperas.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 NombreGen - Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
