@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from baseDatos import DBConnection
 from generador_nombres import generate_names
+from waitress import serve
 #base
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Necesario para utilizar la sesión
@@ -43,4 +44,4 @@ def generated():
     return render_template('index.html', names=names, categories=categories)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    serve(app, host='0.0.0.0', port=8080)
