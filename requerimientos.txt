@@ -1,0 +1,6 @@
+Flask
+waitress
+Flask-SQLAlchemy
+requests
+torch
+transformers
